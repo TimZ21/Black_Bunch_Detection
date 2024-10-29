@@ -1,0 +1,21 @@
+model = 'yolov5s.pt'  # YOLOv5 Small pre-trained model
+epochs = 200  # Number of epochs for training
+batch_size = 16  # Set batch size based on GPU memory capacity
+img_size = 416  # Increase image size for better performance
+project_name = 'yolov5_training_project_small'  # Name of the project for saving results
+weights_path = f'{project_name}/weights/best.pt'  # Path to save the best weights
+
+# Function to train YOLOv5 model using CLI
+def train_yolov5():
+    command = [
+        sys.executable, 'train.py',  # Use sys.executable to ensure the current Python environment is used
+        '--img', str(img_size),
+        '--batch-size', str(batch_size),  # Corrected from '--batch' to '--batch-size'
+        '--epochs', str(epochs),
+        '--data', data_yaml,
+        '--weights', model,
+        '--project', project_name,
+        '--device', '0' if torch.cuda.is_available() else 'cpu',  # Ensure GPU is used if available
+        '--cache',  # Cache dataset for faster training
+        '--workers', '4'  # Set number of data loader workers based on system capabilities
+    ]
