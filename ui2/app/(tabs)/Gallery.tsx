@@ -3,7 +3,7 @@ import { View, Text, Button, StatusBar, StyleSheet, TouchableOpacity } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather'; // For the plus icon
 
-const AlbumScreen = () => {
+const Gallery = () => {
   const handleUploadPhoto = () => {
     // Handle the upload functionality here
   };
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlbumScreen;
+export default Gallery;

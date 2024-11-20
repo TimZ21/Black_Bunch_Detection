@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "UI",
-    "slug": "UI",
+    "name": "my-appTest",
+    "slug": "my-appTest",
     "version": "1.0.0",
-    "runtimeVersion": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -20,8 +19,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.sanyaabc.UI"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -33,14 +31,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "239ab250-133b-45b4-b09f-a3fb862cb5e6"
-      }
     }
   }
 }

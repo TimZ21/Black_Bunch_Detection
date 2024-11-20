@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
@@ -27,7 +26,7 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="GetStartedPage"
+        name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -36,20 +35,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="Album"
+        name="Gallery"
         options={{
           title: 'Gallery',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? '' : 'outline'} color={color} />
+            <TabBarIcon name={focused ? 'images' : 'images-outline'} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="Camera"
         options={{
-          title: 'Real Time',
+          title: 'Camera',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? '' : 'outline'} color={color} />
+            <TabBarIcon name={focused ? 'camera' : 'camera-outline'} color={color} />
           ),
         }}
       />
