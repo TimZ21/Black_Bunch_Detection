@@ -4,14 +4,25 @@
     <item name="android:editTextStyle">@style/ResetEditText</item>
     <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     <item name="colorPrimary">@color/colorPrimary</item>
+<<<<<<< HEAD
     <item name="android:statusBarColor">#ffffff</item>
+=======
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
   </style>
   <style name="ResetEditText" parent="@android:style/Widget.EditText">
     <item name="android:padding">0dp</item>
     <item name="android:textColorHint">#c8c8c8</item>
     <item name="android:textColor">@android:color/black</item>
   </style>
+<<<<<<< HEAD
   <style name="Theme.App.SplashScreen" parent="AppTheme">
     <item name="android:windowBackground">@drawable/splashscreen</item>
+=======
+  <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/splashscreen_background</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/splashscreen_logo</item>
+    <item name="postSplashScreenTheme">@style/AppTheme</item>
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
   </style>
 </resources>

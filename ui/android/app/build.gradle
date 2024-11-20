@@ -4,6 +4,7 @@ apply plugin: "com.facebook.react"
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
+<<<<<<< HEAD
 static def versionToNumber(major, minor, patch) {
   return patch * 100 + minor * 10000 + major * 1000000
 }
@@ -25,6 +26,8 @@ def getRNVersion() {
 }
 def rnVersion = getRNVersion()
 
+=======
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -41,12 +44,21 @@ react {
     bundleCommand = "export:embed"
 
     /* Folders */
+<<<<<<< HEAD
     //   The root of your project, i.e. where "package.json" lives. Default is '..'
     // root = file("../")
     //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
     // reactNativeDir = file("../node_modules/react-native")
     //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
     // codegenDir = file("../node_modules/@react-native/codegen")
+=======
+     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
+    // root = file("../../")
+    //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
+    // reactNativeDir = file("../../node_modules/react-native")
+    //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
+    // codegenDir = file("../../node_modules/@react-native/codegen")
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
 
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to
@@ -79,10 +91,15 @@ react {
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
     // hermesFlags = ["-O", "-output-source-map"]
 
+<<<<<<< HEAD
     if (rnVersion >= versionToNumber(0, 75, 0)) {
         /* Autolinking */
         autolinkLibrariesWithApp()
     }
+=======
+    /* Autolinking */
+    autolinkLibrariesWithApp()
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
 }
 
 /**
@@ -109,9 +126,15 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
+<<<<<<< HEAD
     namespace 'com.yirouteoh.ui'
     defaultConfig {
         applicationId 'com.yirouteoh.ui'
+=======
+    namespace "com.test3"
+    defaultConfig {
+        applicationId 'com.yirouteoh.test3'
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -144,6 +167,12 @@ android {
             useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
         }
     }
+<<<<<<< HEAD
+=======
+    androidResources {
+        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
+    }
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`
@@ -194,8 +223,11 @@ dependencies {
         implementation jscFlavor
     }
 }
+<<<<<<< HEAD
 
 if (rnVersion < versionToNumber(0, 75, 0)) {
     apply from: new File(["node", "--print", "require.resolve('@react-native-community/cli-platform-android/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim(), "../native_modules.gradle");
     applyNativeModulesAppBuildGradle(project)
 }
+=======
+>>>>>>> 5138816f6d7e63c57cdf2d81dab16f9cb7f6e5ca

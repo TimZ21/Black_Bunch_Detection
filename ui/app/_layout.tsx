@@ -1,37 +1,30 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import IndexPage from './index'; // Import your cover page
+import CameraPage from './camerapage'; // Import your camera page
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+const Stack = createStackNavigator();
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+const AppLayout = () => {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="IndexPage">
+        {/* Cover Page */}
+        <Stack.Screen
+          name="IndexPage"
+          component={IndexPage}
+          options={{ headerShown: false }} // Hide header on the cover page
+        />
+        {/* Camera Page */}
+        <Stack.Screen
+          name="CameraPage"
+          component={CameraPage}
+          options={{ headerShown: true, title: 'Camera' }} // Show header for the camera page
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default AppLayout;
