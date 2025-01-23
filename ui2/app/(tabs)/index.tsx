@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 const index: React.FC = () => {
+  const navigation = useNavigation(); // Get the navigation object
+
+  const handleGetStarted = () => {
+    navigation.navigate('Gallery'); // Navigate to the Gallery page
+  };
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1A1A" />
+      <StatusBar barStyle="dark-content" backgroundColor="#000000" />
       <DecorativeHeader />
       <IconImage />
       <TextContent />
-      <GetStartedButton />
+      <GetStartedButton onPress={handleGetStarted} />
       <BottomDecor />
     </View>
   );
@@ -39,8 +46,8 @@ const TextContent: React.FC = () => (
   </View>
 );
 
-const GetStartedButton: React.FC = () => (
-  <TouchableOpacity style={styles.button}>
+const GetStartedButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
     <Text style={styles.buttonText}>Get Started</Text>
   </TouchableOpacity>
 );
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingVertical: 60,
-    backgroundColor: '#1A1A1A', // Dark background for the app
+    backgroundColor: '#E3FDFB', // Light background for the app
   },
   header: {
     position: 'absolute',
@@ -98,7 +105,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: '#000000', // Dark text for contrast against light background
     textAlign: 'center',
     lineHeight: 38,
     marginBottom: 10,
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 18,
     fontWeight: '400',
-    color: '#FFFFFF',
+    color: '#333333', // Slightly lighter dark text for subtitle
     textAlign: 'center',
     marginVertical: 10,
   },
@@ -127,11 +134,11 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: '#FFFFFF', // White text for button
   },
   bottomDecor: {
     position: 'absolute',
-    bottom: 0,
+    bottom:  0,
     left: 0,
     right: 0,
     alignItems: 'center',

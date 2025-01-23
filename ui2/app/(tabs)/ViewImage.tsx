@@ -1,46 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
-import ImageViewer from 'react-native-image-zoom-viewer'; // Image zoom viewer
+import { View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const ViewImage: React.FC = () => {
-  const images = [
-    {
-      url: 'https://placeholder.pics/svg/363x498', // Image URL to zoom
-    },
-  ];
-
+const ViewImage = ({ photoUri, onClose }) => {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1A1A" />
-      <Header />
-      <ImageView images={images} />
-    </View>
-  );
-};
+      <StatusBar barStyle="dark-content" backgroundColor="#000000" />
 
-const Header: React.FC = () => (
-  <View style={styles.header}>
-    <Text style={styles.title}>View Image</Text>
-    <TouchableOpacity style={styles.closeButton}>
-      <Image
-        source={{ uri: 'https://placeholder.pics/svg/30x30' }} // Close icon
-        style={styles.closeIcon}
-      />
-    </TouchableOpacity>
-  </View>
-);
+      {/* Close Button */}
+      <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+        <Icon name="close" size={30} color="#1B928F" />
+      </TouchableOpacity>
 
-const ImageView: React.FC<{ images: { url: string }[] }> = ({ images }) => {
-  return (
-    <View style={styles.imageContainer}>
-      <ImageViewer
-        imageUrls={images} // Provide the images array
-        enableImageZoom={true} // Enable zoom functionality
-        enableSwipeDown={true} // Enable swipe down to close the image view
-        onSwipeDown={() => console.log('swiped down')}
-        saveToLocalByLongPress={false} // Disable saving images on long press
-        renderIndicator={() => null} // Hide default indicator
-      />
+      {/* Display the snapped image */}
+      <Image source={{ uri: photoUri }} style={styles.image} />
     </View>
   );
 };
@@ -48,37 +21,26 @@ const ImageView: React.FC<{ images: { url: string }[] }> = ({ images }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1A1A1A', // Dark theme
-    paddingTop: StatusBar.currentHeight || 0, // To account for the status bar height
-  },
-  header: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    right: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 1,
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    fontFamily: 'Roboto',
-    color: '#FFFFFF', // White title
-    letterSpacing: 1,
+    backgroundColor: '#E3FDFB',
+    position: 'relative',
+    padding: 20,
   },
   closeButton: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
+    zIndex: 1,
     width: 36,
     height: 36,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Slight dark background for button
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Light background for button
     borderRadius: 18, // Round button
     borderWidth: 2,
     borderColor: '#1B928F', // Subtle blue border
-    opacity: 0.8,
+    opacity: 0.9,
     elevation: 5,
   },
   closeIcon: {
@@ -86,14 +48,14 @@ const styles = StyleSheet.create({
     height: '60%',
     tintColor: '#1B928F', // Blue color for close icon
   },
-  imageContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '15%', // Slight margin top
-    paddingHorizontal: 15, // Horizontal padding for smaller screens
-    borderRadius: 15, // Rounded corners for the image container
-    overflow: 'hidden', // Ensures that the image stays inside the container
+  image: {
+    width: '100%',
+    height: '70%',
+    resizeMode: 'contain',
+    marginBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
   },
 });
 

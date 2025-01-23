@@ -10,7 +10,7 @@ const ImagePicker: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1A1A" />
+      <StatusBar barStyle="dark-content" backgroundColor="000000" />
       <TopNavigation />
       <SearchField />
       <PhotoGrid
@@ -50,7 +50,7 @@ const SearchField: React.FC = () => (
     <TextInput
       style={styles.searchInput}
       placeholder="Photos, People, Places..."
-      placeholderTextColor="#3c3c434d"
+      placeholderTextColor="#A0A0A0" // Lighter placeholder color
     />
   </View>
 );
@@ -106,26 +106,26 @@ const SelectionFooter: React.FC = () => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1A1A1A', // Dark background
+    backgroundColor: '#FFFFFF', // Light background
     paddingTop: StatusBar.currentHeight || 0, // Ensures content starts below the StatusBar
   },
   topNavigation: {
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: '#333333', // Dark background for navigation
+    backgroundColor: '#F8F8F8', // Light background for navigation
     borderBottomWidth: 1,
-    borderBottomColor: '#4D4D4D', // Dark border
+    borderBottomColor: '#DDDDDD', // Light border
   },
   selectText: {
     textAlign: 'center',
     fontSize: 13.8,
-    color: '#CCCCCC', // Lighter gray for text
+    color: '#333333', // Darker text for contrast
   },
   navigationActions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop : 10,
   },
   actionText: {
     color: '#1B928F', // Blue for actions
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   segmentedPicker: {
     flexDirection: 'row',
-    backgroundColor: '#7676801f', // Subtle background for picker
+    backgroundColor: '#E0E0E0', // Subtle background for picker
     borderRadius: 8.49,
     overflow: 'hidden',
   },
@@ -154,20 +154,20 @@ const styles = StyleSheet.create({
   },
   pickerText: {
     fontWeight: '500',
-    color: '#CCCCCC', // Light gray text for inactive option
+    color: '#333333', // Dark text for inactive option
   },
   searchContainer: {
     padding: 16,
-    backgroundColor: '#333333', // Dark background for search field
+    backgroundColor: '#F8F8F8', // Light background for search field
     borderBottomWidth: 1,
-    borderBottomColor: '#4D4D4D', // Dark border for search
+    borderBottomColor: '#DDDDDD', // Light border for search
   },
   searchInput: {
-    backgroundColor: '#7676801f', // Light gray background for input
+    backgroundColor: '#E0E0E0', // Light gray background for input
     borderRadius: 10.62,
     paddingVertical: 7,
     paddingHorizontal: 8,
-    color: '#FFFFFF', // White text inside input
+    color: '#333333', // Dark text inside input
   },
   photoGrid: {
     flexDirection: 'row',
@@ -178,10 +178,18 @@ const styles = StyleSheet.create({
   photoBox: {
     width: '32%',
     marginBottom: 2,
-    backgroundColor: '#1A1A1A', // Dark background for photo boxes
+    backgroundColor: '#FFFFFF', // White background for photo boxes
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: 'hidden', // To ensure rounded corners
     position: 'relative', // To position the checkmark overlay correctly
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2, // For Android shadow
   },
   photo: {
     width: '100%',
@@ -213,9 +221,9 @@ const styles = StyleSheet.create({
   },
   selectionFooter: {
     padding: 16,
-    backgroundColor: '#333333', // Dark background for footer
+    backgroundColor: '#F8F8F8', // Light background for footer
     borderTopWidth: 1,
-    borderTopColor: '#4D4D4D', // Dark border for footer
+    borderTopColor: '#DDDDDD', // Light border for footer
     alignItems: 'center',
   },
   footerText: {

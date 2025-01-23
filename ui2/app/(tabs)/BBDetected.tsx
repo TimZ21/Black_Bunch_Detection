@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar, Alert } from 'react-native';
 
 const BBDetected: React.FC = () => {
   return (
@@ -30,27 +30,31 @@ const DetectedImage: React.FC = () => (
 
 const DetectionDetails: React.FC = () => (
   <View style={styles.detailsContainer}>
-    <Text style={styles.messageTitle}>Black Bunch Detected</Text>
-    <Text style={styles.messageSubtitle}>Detection Accuracy: 92%</Text>
-    <Text style={styles.messageSubtitle}>Bunches Detected: 3</Text>
+    <Text style={styles.messageTitle}>Detected</Text>
+    <Text style={styles.messageSubtitle}>Detection Accuracy: <Text style={styles.greenText}>92%</Text></Text>
+    <Text style={styles.messageSubtitle}>Bunches Detected: <Text style={styles.greenText}>3</Text></Text>
   </View>
 );
 
-const ActionButtons: React.FC = () => (
-  <View style={styles.actionButtonsContainer}>
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>Save Image</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>Retry</Text>
-    </TouchableOpacity>
-  </View>
-);
+const ActionButtons: React.FC = () => {
+  const handleSaveImage = () => {
+    // Show alert when the image is saved
+    Alert.alert("Image saved!", "Your image has been successfully saved.", [{ text: "OK" }]);
+  };
+
+  return (
+    <View style={styles.actionButtonsContainer}>
+      <TouchableOpacity style={styles.button} onPress={handleSaveImage}>
+        <Text style={styles.buttonText}>Save Image</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#E3FDFB', // Keep the background color
     justifyContent: 'space-between',
     paddingTop: StatusBar.currentHeight || 0,
   },
@@ -83,6 +87,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     borderColor: '#1B928F',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
   detailsContainer: {
     marginTop: 30,
@@ -92,20 +100,24 @@ const styles = StyleSheet.create({
   messageTitle: {
     fontSize: 32,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: '#1A1A1A', // Dark color for better contrast
     textAlign: 'center',
   },
   messageSubtitle: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#fc851e',
+    color: '#1A1A1A', // Default color for subtitle
     textAlign: 'center',
     marginTop: 10,
+  },
+  greenText: {
+    color: '#4CAF50', // Green color for accuracy and bunches detected
+    fontWeight: '700',
   },
   actionButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginTop: 5, // Reduced marginTop to move buttons up
+    marginTop: 5,
     paddingBottom: 30,
   },
   button: {
@@ -128,4 +140,3 @@ const styles = StyleSheet.create({
 });
 
 export default BBDetected;
-

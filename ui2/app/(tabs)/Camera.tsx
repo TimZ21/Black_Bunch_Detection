@@ -1,96 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons'; // For gallery icon
+import React from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // For icons
+import backgroundImage from '../../assets/images/background.jpg'; // Adjust the path as necessary
 
-export default function CameraScreen() {
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [cameraType, setCameraType] = useState(CameraType.back);
-  const [photoUri, setPhotoUri] = useState<string | null>(null);
-  const cameraRef = useRef<Camera | null>(null);
-
-  // Request camera permissions on mount
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
-
-  // Take a photo
-  const takePhoto = async () => {
-    if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync();
-      setPhotoUri(photo.uri);
-    }
-  };
-
-  // Pick an image from gallery
-  const pickImageFromGallery = async () => {
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (permissionResult.granted) {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 1,
-      });
-      if (!result.canceled) {
-        setPhotoUri(result.uri);
-      }
-    } else {
-      alert('Permission to access gallery is required!');
-    }
-  };
-
-  // Conditional rendering for camera
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
+const Camera = ({ photoUri, onCapture }) => {
   return (
-    <View style={styles.container}>
-      <Camera style={styles.camera} type={cameraType} ref={cameraRef}>
-        <View style={styles.cameraOverlay}>
-          {/* Real-time camera feed */}
-          {photoUri && <Image source={{ uri: photoUri }} style={styles.previewImage} />}
+      
 
-          {/* Switch camera button */}
-          <TouchableOpacity
-            style={styles.switchButton}
-            onPress={() =>
-              setCameraType(cameraType === CameraType.back ? CameraType.front : CameraType.back)
-            }>
-            <Ionicons name="camera-reverse" size={30} color="white" />
-          </TouchableOpacity>
+    <ImageBackground
+      source={backgroundImage} // Use the imported local image
+      style={styles.container}
+      resizeMode="cover" // Adjusts the image to cover the entire background
+    >
+      {/* Camera View Placeholder */}
+      <View style={styles.camera}>
+        {/* Preview of the taken photo */}
+        {photoUri && <Image source={{ uri: photoUri }} style={styles.previewImage} />}
+      </View>
 
-          {/* Take photo button */}
-          <TouchableOpacity style={styles.captureButton} onPress={takePhoto}>
-            <Text style={styles.captureButtonText}>Capture</Text>
+      <View style={styles.cameraOverlay}>
+        {/* Switch camera button (optional) */}
+        <TouchableOpacity style={styles.switchButton}>
+          <Ionicons name="camera-reverse" size={30} color="white" />
+        </TouchableOpacity>
+
+        {/* Capture photo button with outer ring */}
+        <View style={styles.outerRing}>
+          <TouchableOpacity style={styles.captureButton} onPress={onCapture}>
+            <View style={styles.captureButtonInner}>
+              <Text style={styles.captureButtonText}></Text>
+            </View>
           </TouchableOpacity>
         </View>
-      </Camera>
-
-      {/* Gallery Icon to pick image */}
-      <TouchableOpacity style={styles.galleryButton} onPress={pickImageFromGallery}>
-        <Ionicons name="image" size={30} color="#fff" />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
   },
   camera: {
     width: '100%',
     height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent', // Make sure the camera view is transparent
   },
   cameraOverlay: {
     flex: 1,
@@ -103,25 +61,28 @@ const styles = StyleSheet.create({
     top: 30,
     right: 30,
   },
+  outerRing: {
+    width: 100, // Adjust the size as needed
+    height: 100, // Adjust the size as needed
+    borderRadius: 50, // Half of the width/height for a perfect circle
+    borderWidth: 5, // Width of the ring
+    borderColor: 'rgba(255, 255, 255, 0.8)', // Transparent white color for the ring
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 5, // Space from the bottom
+  },
   captureButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 50,
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#FFFFFF', // Solid white color
   },
   captureButtonText: {
     fontSize: 18,
     color: '#000',
-  },
-  galleryButton: {
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-    backgroundColor: '#1B928F',
-    borderRadius: 50,
-    padding: 15,
+    fontWeight: 'bold',
   },
   previewImage: {
     width: 100,
@@ -129,4 +90,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
   },
+  captureButtonInner: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
+export default Camera;

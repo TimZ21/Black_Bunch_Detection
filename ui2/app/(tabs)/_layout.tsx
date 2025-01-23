@@ -10,28 +10,28 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#1B928F', // Teal accent color for active tab
-        tabBarInactiveTintColor: '#999999', // Light gray for inactive tabs
+        tabBarActiveTintColor: '#FFFFFF', // White for active tab
+        tabBarInactiveTintColor: '#CCCCCC', // Light gray for inactive tabs
         tabBarStyle: {
-          backgroundColor: '#333333', // Dark gray background for the tab bar
+          backgroundColor: '#1B928F', // Teal background for the tab bar
           borderTopWidth: 1,
-          borderTopColor: '#4D4D4D', // Border for separation
-          paddingBottom: 5,
-          paddingTop: 5,
+          borderTopColor: '#1A7B7B', // Slightly darker teal for border
+          paddingBottom: 5, // Increased padding for bottom
+          paddingTop: 5, // Increased padding for top
+          height: 60, // Set a fixed height for the tab bar
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 15,
           fontWeight: 'bold',
         },
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: 'Get Started',
+          tabBarButton: () => null,
         }}
       />
       <Tabs.Screen
@@ -50,6 +50,50 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'camera' : 'camera-outline'} color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="RealTimeDetectionPage"
+        options={{
+          title: 'Real Time',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'videocam' : 'videocam-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ImagePicker"
+        options={{
+          title: 'Image Picker',
+          tabBarButton: () => null, // Hide this tab if you don't want it on the tab bar
+        }}
+      />
+      <Tabs.Screen
+        name="BBDetected"
+        options={{
+          title: 'BBDetected',
+          tabBarButton: () => null, // Hide this tab if you don't want it on the tab bar
+        }}
+      />
+      <Tabs.Screen
+        name="ReviewSnappedImage"
+        options={{
+          title: 'Review Image',
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="UploadingLayover"
+        options={{
+          title: 'Uploading Image',
+          tabBarButton: () => null, // Hide this tab if you don't want it on the tab bar
+        }}
+      />
+      <Tabs.Screen
+        name="ViewImage"
+        options={{
+          title: 'View Image',
+          tabBarButton: () => null, // Hide this tab if you don't want it on the tab bar
         }}
       />
     </Tabs>

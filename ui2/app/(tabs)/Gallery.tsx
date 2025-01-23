@@ -1,21 +1,17 @@
 import React from 'react';
-import { View, Text, Button, StatusBar, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather'; // For the plus icon
 
 const Gallery = () => {
-  const handleUploadPhoto = () => {
-    // Handle the upload functionality here
-  };
-
   const handleAddPhoto = () => {
     // Handle the "Add Photo" functionality here
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Black Status Bar */}
-      <StatusBar barStyle="light-content" backgroundColor="#000000" />
+      {/* Dark Status Bar */}
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
       {/* Corner Shapes */}
       <View style={styles.topLeftCorner} />
@@ -28,8 +24,7 @@ const Gallery = () => {
 
       {/* Content */}
       <View style={styles.content}>
-        <Text style={styles.emptyText}>No images detected yet.</Text>
-        <Button title="Upload Photo" onPress={handleUploadPhoto} color="#1B928F" />
+        <Text style={styles.emptyText}>No images processed yet.</Text>
       </View>
 
       {/* Floating Plus Button */}
@@ -43,7 +38,7 @@ const Gallery = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1A1A1A',
+    backgroundColor: '#E3FDFB', // Light background color
   },
   topLeftCorner: {
     position: 'absolute',
@@ -74,7 +69,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1B928F',
+    color: '#1B928F', // Keep title color
   },
   content: {
     flex: 1,
@@ -84,7 +79,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     marginBottom: 20,
-    color: '#CCCCCC',
+    color: '#333333', // Darker text for contrast
   },
   floatingButton: {
     position: 'absolute',
